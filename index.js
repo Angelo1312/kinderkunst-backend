@@ -41,9 +41,9 @@ app.post('/upload', upload.single('bild'), async (req, res) => {
     } else {
       imageBuffer = inputBuffer;
     }
-
-    // Bild mit Sharp weiterverarbeiten (z. B. skalieren)
-    await sharp(imageBuffer)
+// Bild mit Sharp weiterveraarbeiten (z.B. skalieren)
+      
+      await sharp(imageBuffer)
       .resize(800) // Optional: Skalierung
       .jpeg({ quality: 90 })
       .toFile(outputPath);
