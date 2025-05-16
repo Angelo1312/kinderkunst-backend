@@ -47,3 +47,7 @@ Die API läuft unter `http://localhost:3000`.
 ---
 
 **Slogan:** *Kleine Kunst ganz groß.* 🎨
+
+---
+
+🛠️ Automatisches Deployment per GitHub Actions + Render aktiviert.
