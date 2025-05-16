@@ -66,3 +66,14 @@ app.post('/upload', upload.single('bild'), async (req, res) => {
 app.listen(port, () => {
   console.log(`🚀 Server läuft auf http://localhost:${port}`);
 });
+
+// Root-Route für Verfügbarkeits-Check
+app.get('/', (req, res) => {
+  res.send('✅ KinderKunst Backend ist online!');
+});
+
+// Server starten
+app.listen(port, () => {
+  console.log(`🚀 Server läuft auf http://localhost:${port}`);
+});
+
