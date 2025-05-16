@@ -8,3 +8,14 @@ export default defineConfig([
   { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
 { files: ["**/*.{js,mjs,cjs}"], languageOptions: { globals: { ...globals.browser, ...globals.node } } },
 ]);
+import globals from "globals";
+
+export default [
+  {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
+];
