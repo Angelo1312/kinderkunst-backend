@@ -50,6 +50,7 @@ app.post('/upload', upload.single('bild'), async (req, res) => {
     // Temporäre Datei löschen
     fs.unlinkSync(inputPath);
 
+      
     res.status(200).json({
       message: '✅ Konvertierung erfolgreich!',
       dateipfad: `/uploads/${outputFilename}`,
