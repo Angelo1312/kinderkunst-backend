@@ -1,0 +1,54 @@
+name: Test & Deploy Backend to Render
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Lint & Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Linter
+        run: npm run lint
+
+      - name: Run Tests
+        run: npm test
+
+  deploy:
+    name: Trigger Render Deploy Hook
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Call Render Deploy Hook
+        run: |
+          curl -X GET "$RENDER_DEPLOY_HOOK_URL"
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+
+  healthcheck:
+    name: Check Render Deployment
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Wait for Deployment
+        run: sleep 20
+
+      - name: Check if backend is live
+        run: |
+          curl -fsS https://kinderkunst-backend.onrender.com/health || exit 1

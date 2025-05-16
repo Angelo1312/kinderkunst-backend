@@ -51,4 +51,3 @@ Die API läuft unter `http://localhost:3000`.
 ---
 
 🛠️ Automatisches Deployment per GitHub Actions + Render aktiviert.
-
